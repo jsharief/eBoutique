@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class EBoutioqueProfileApplicationTests {
 
-	// Hello  Testing 1233 dffdfdf
+ 
 	@Test
 	public void contextLoads() {
 	}
