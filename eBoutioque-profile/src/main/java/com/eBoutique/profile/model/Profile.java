@@ -2,21 +2,34 @@ package com.eBoutique.profile.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.TableGenerator;
+
 /**
  * 
  * @author eBoutique.in
  *
  */
+@Entity
+
+@TableGenerator(name="tab", initialValue=0, allocationSize=50)
 public class Profile {
 
 	/**
 	 * 
 	 */
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE, generator="tab")
+	private Long id;
 	
 	/**
 	 * 
 	 */
+	
 	private String externalId;
 	
 	/**
@@ -47,7 +60,11 @@ public class Profile {
 	
 	private String password;
 	
-	
+	/**
+	 * 
+	 */
+	@Column(columnDefinition="tinyint(1) default 1")
+	private boolean isActive;
 	
 	
 	public Profile() {
@@ -59,7 +76,7 @@ public class Profile {
 	/**
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -68,7 +85,7 @@ public class Profile {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -178,6 +195,24 @@ public class Profile {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+
+	/**
+	 * @return the isActive
+	 */
+	public boolean isActive() {
+		return isActive;
+	}
+
+
+
+	/**
+	 * @param isActive the isActive to set
+	 */
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	
