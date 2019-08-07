@@ -51,6 +51,7 @@ public class Profile {
 	/**
 	 *  
 	 */
+	@Column(unique=true)
 	private  String login;
 	
 	
@@ -66,6 +67,10 @@ public class Profile {
 	@Column(columnDefinition="tinyint(1) default 1")
 	private boolean isActive;
 	
+	/**
+	 * 
+	 */
+	private String role;
 	
 	public Profile() {
 		// TODO Auto-generated constructor stub
@@ -213,6 +218,24 @@ public class Profile {
 	 */
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+
+
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

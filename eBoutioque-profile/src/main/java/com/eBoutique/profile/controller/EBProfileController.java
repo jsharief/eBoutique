@@ -1,5 +1,7 @@
 package com.eBoutique.profile.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +34,20 @@ public class EBProfileController {
 	@PostMapping(path = "/profile/create",consumes = "application/json", produces="application/json")
 	public ResponseEntity<Object> createProfile(@RequestBody Profile pProfile) {
 		
-		ebProfileService.createProfile(pProfile);
+		Optional<Profile> optional = ebProfileService.isProfileExist(pProfile);
 		
-		return new ResponseEntity<>("Profile Created Sucessfully",HttpStatus.CREATED);
+		ResponseEntity<Object> responseEntity = null;
+		
+		if (optional.isPresent()) {
+			responseEntity =  new ResponseEntity<>("Profile Already  exist",HttpStatus.BAD_REQUEST);
+		} else {
+			
+			ebProfileService.createProfile(pProfile);
+			
+			responseEntity = new ResponseEntity<>("Profile Created Sucessfully",HttpStatus.CREATED);
+		};
+		
+		return responseEntity;
 		
 	}
 
